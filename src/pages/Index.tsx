@@ -42,15 +42,21 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0a0e1a] via-[#0f1525] to-[#0a0e1a] relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden">
       <div 
-        className="absolute inset-0 opacity-20 bg-cover bg-center bg-no-repeat"
+        className="fixed inset-0 opacity-30 bg-cover bg-center bg-no-repeat z-0"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?w=1920&q=80')`,
-          filter: 'brightness(0.3) contrast(1.2)'
+          backgroundImage: `url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1920&q=80')`,
+          filter: 'brightness(0.4) saturate(1.5) hue-rotate(200deg)'
         }}
       ></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e1a]/80 via-[#0f1525]/90 to-[#0a0e1a]/95"></div>
+      <div className="fixed inset-0 bg-gradient-to-b from-[#0a0e1a]/70 via-[#0f1525]/85 to-[#0a0e1a]/90 z-0"></div>
+      <div className="fixed inset-0 z-0" style={{
+        backgroundImage: `
+          repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,212,255,0.03) 2px, rgba(0,212,255,0.03) 4px),
+          repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(155,135,245,0.03) 2px, rgba(155,135,245,0.03) 4px)
+        `
+      }}></div>
       <div className="relative z-10">
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0e1a]/90 backdrop-blur-md border-b border-[#00d4ff]/20">
         <div className="container mx-auto px-4 py-4">

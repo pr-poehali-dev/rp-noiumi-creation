@@ -42,7 +42,16 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0a0e1a] via-[#0f1525] to-[#0a0e1a]">
+    <div className="min-h-screen bg-gradient-to-b from-[#0a0e1a] via-[#0f1525] to-[#0a0e1a] relative overflow-hidden">
+      <div 
+        className="absolute inset-0 opacity-20 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?w=1920&q=80')`,
+          filter: 'brightness(0.3) contrast(1.2)'
+        }}
+      ></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e1a]/80 via-[#0f1525]/90 to-[#0a0e1a]/95"></div>
+      <div className="relative z-10">
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0e1a]/90 backdrop-blur-md border-b border-[#00d4ff]/20">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -279,6 +288,7 @@ const Index = () => {
           </div>
         </div>
       </footer>
+      </div>
     </div>
   );
 };

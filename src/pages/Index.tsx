@@ -6,295 +6,322 @@ import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const news = [
+  const features = [
     {
-      id: 1,
-      title: 'Запуск сервера НОUMI RUSSIA',
-      date: '8 декабря 2024',
-      category: 'Важное',
-      description: 'Мы рады объявить о запуске нового мобильного РП сервера! Приглашаем всех игроков присоединиться.',
-      icon: 'Rocket'
+      icon: 'Users',
+      title: 'Более 5000 игроков',
+      description: 'Присоединяйся к огромному сообществу Black Russia'
     },
     {
-      id: 2,
-      title: 'Обновление игровой механики',
-      date: '7 декабря 2024',
-      category: 'Обновление',
-      description: 'Добавлены новые профессии, улучшена система экономики и добавлены уникальные транспортные средства.',
-      icon: 'Wrench'
+      icon: 'Building2',
+      title: 'Реалистичная экономика',
+      description: 'Стройте бизнес, инвестируйте, зарабатывайте'
     },
     {
-      id: 3,
-      title: 'Акция на донат',
-      date: '5 декабря 2024',
-      category: 'Акция',
-      description: 'Специальное предложение! Скидки до 30% на все донат-пакеты. Торопитесь, акция ограничена!',
-      icon: 'Gift'
+      icon: 'Car',
+      title: '200+ транспорта',
+      description: 'От скутеров до суперкаров и вертолётов'
+    },
+    {
+      icon: 'Briefcase',
+      title: '30+ профессий',
+      description: 'От таксиста до президента штата'
+    },
+    {
+      icon: 'Home',
+      title: 'Недвижимость',
+      description: 'Покупайте квартиры, дома, бизнесы'
+    },
+    {
+      icon: 'Shield',
+      title: 'Фракции',
+      description: 'Полиция, мафия, банды - выбирай свою сторону'
     }
   ];
 
-  const menuItems = [
-    { id: 'home', label: 'Главная', icon: 'Home' },
-    { id: 'about', label: 'О сервере', icon: 'Info' },
-    { id: 'forum', label: 'Форум', icon: 'MessageSquare' },
-    { id: 'donate', label: 'Донат', icon: 'ShoppingCart' }
+  const servers = [
+    { name: 'TRINITY', online: '1247', max: '1500', ping: '23ms', status: 'online' },
+    { name: 'MESA', online: '1089', max: '1500', ping: '28ms', status: 'online' },
+    { name: 'PRESCOTT', online: '943', max: '1500', ping: '31ms', status: 'online' }
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      <div 
-        className="fixed inset-0 opacity-30 bg-cover bg-center bg-no-repeat z-0"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1920&q=80')`,
-          filter: 'brightness(0.4) saturate(1.5) hue-rotate(200deg)'
-        }}
-      ></div>
-      <div className="fixed inset-0 bg-gradient-to-b from-[#0a0e1a]/70 via-[#0f1525]/85 to-[#0a0e1a]/90 z-0"></div>
-      <div className="fixed inset-0 z-0" style={{
-        backgroundImage: `
-          repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,212,255,0.03) 2px, rgba(0,212,255,0.03) 4px),
-          repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(155,135,245,0.03) 2px, rgba(155,135,245,0.03) 4px)
-        `
-      }}></div>
-      <div className="relative z-10">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0e1a]/90 backdrop-blur-md border-b border-[#00d4ff]/20">
-        <div className="container mx-auto px-4 py-4">
+    <div className="min-h-screen bg-black">
+      {/* Animated Background */}
+      <div className="fixed inset-0 z-0">
+        <div 
+          className="absolute inset-0 opacity-40"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1920&q=80)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            filter: 'brightness(0.3)'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-purple-900/20 to-black/90" />
+      </div>
+
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-purple-500/20">
+        <nav className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#00d4ff] to-[#9b87f5] rounded-lg flex items-center justify-center game-glow">
-                <Icon name="Gamepad2" size={24} className="text-white" />
+            <div className="flex items-center space-x-3">
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
+                <Icon name="Gamepad2" size={28} className="text-white" />
               </div>
-              <h1 className="text-2xl font-bold text-game-gradient">НОUMI RUSSIA</h1>
+              <div>
+                <h1 className="text-2xl font-black text-white tracking-wider">BLACK RUSSIA</h1>
+                <p className="text-xs text-purple-400">MOBILE ROLEPLAY</p>
+              </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="hidden md:flex items-center space-x-1 bg-[#00d4ff]/10 px-3 py-1.5 rounded-full border border-[#00d4ff]/30">
-                <div className="w-2 h-2 bg-[#00d4ff] rounded-full animate-pulse-glow"></div>
-                <span className="text-sm text-[#00d4ff] font-medium">0 онлайн</span>
-              </div>
+
+            <div className="hidden md:flex items-center space-x-6">
+              <a href="#" className="text-gray-300 hover:text-white transition">Главная</a>
+              <a href="#" className="text-gray-300 hover:text-white transition">О проекте</a>
+              <a href="#" className="text-gray-300 hover:text-white transition">Форум</a>
+              <a href="#" className="text-gray-300 hover:text-white transition">Магазин</a>
+              <a href="#" className="text-gray-300 hover:text-white transition">Поддержка</a>
+            </div>
+
+            <Button 
+              className="md:hidden text-white"
+              variant="ghost"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <Icon name={mobileMenuOpen ? 'X' : 'Menu'} size={24} />
+            </Button>
+
+            <div className="hidden md:flex items-center space-x-3">
+              <Button variant="outline" className="border-purple-500 text-purple-400 hover:bg-purple-500/20">
+                <Icon name="LogIn" size={18} className="mr-2" />
+                Войти
+              </Button>
+              <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700">
+                <Icon name="Download" size={18} className="mr-2" />
+                Скачать
+              </Button>
             </div>
           </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden mt-4 pb-4 space-y-2">
+              <a href="#" className="block py-2 text-gray-300 hover:text-white">Главная</a>
+              <a href="#" className="block py-2 text-gray-300 hover:text-white">О проекте</a>
+              <a href="#" className="block py-2 text-gray-300 hover:text-white">Форум</a>
+              <a href="#" className="block py-2 text-gray-300 hover:text-white">Магазин</a>
+              <a href="#" className="block py-2 text-gray-300 hover:text-white">Поддержка</a>
+            </div>
+          )}
+        </nav>
+      </header>
+
+      {/* Main Content */}
+      <main className="relative z-10 pt-24">
+        {/* Hero Section */}
+        <section className="container mx-auto px-4 py-20 text-center">
+          <Badge className="bg-purple-600/20 text-purple-400 border border-purple-500/30 px-4 py-2 text-sm mb-6">
+            🔥 СЕЙЧАС ОНЛАЙН: 3279 ИГРОКОВ
+          </Badge>
           
-          <div className="flex items-center justify-center space-x-2 mt-4 overflow-x-auto">
-            {menuItems.map((item) => (
-              <Button
-                key={item.id}
-                onClick={() => setActiveSection(item.id)}
-                variant={activeSection === item.id ? 'default' : 'ghost'}
-                className={`flex items-center space-x-2 ${
-                  activeSection === item.id
-                    ? 'bg-gradient-to-r from-[#00d4ff] to-[#9b87f5] text-white game-glow'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
-                }`}
+          <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
+            ТВОЯ ИСТОРИЯ<br />
+            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent">
+              НА УЛИЦАХ BLACK RUSSIA
+            </span>
+          </h1>
+
+          <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
+            Погрузись в мир реалистичной ролевой игры на мобильных устройствах. 
+            Создавай свою криминальную империю, строй бизнес или защищай закон.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+            <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-10 py-7 text-lg">
+              <Icon name="Download" size={24} className="mr-2" />
+              Скачать игру
+            </Button>
+            <Button size="lg" variant="outline" className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500/10 px-10 py-7 text-lg">
+              <Icon name="PlayCircle" size={24} className="mr-2" />
+              Смотреть трейлер
+            </Button>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <Card className="bg-gradient-to-br from-purple-900/40 to-black border-purple-500/30 p-6">
+              <div className="text-4xl font-black text-purple-400 mb-2">5000+</div>
+              <div className="text-gray-400 text-sm">Игроков онлайн</div>
+            </Card>
+            <Card className="bg-gradient-to-br from-pink-900/40 to-black border-pink-500/30 p-6">
+              <div className="text-4xl font-black text-pink-400 mb-2">200+</div>
+              <div className="text-gray-400 text-sm">Видов транспорта</div>
+            </Card>
+            <Card className="bg-gradient-to-br from-red-900/40 to-black border-red-500/30 p-6">
+              <div className="text-4xl font-black text-red-400 mb-2">30+</div>
+              <div className="text-gray-400 text-sm">Профессий</div>
+            </Card>
+            <Card className="bg-gradient-to-br from-blue-900/40 to-black border-blue-500/30 p-6">
+              <div className="text-4xl font-black text-blue-400 mb-2">15</div>
+              <div className="text-gray-400 text-sm">Фракций</div>
+            </Card>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="container mx-auto px-4 py-20">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+              ПОЧЕМУ <span className="text-purple-400">BLACK RUSSIA?</span>
+            </h2>
+            <p className="text-gray-400 text-lg">Лучший мобильный RP сервер в СНГ</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <Card 
+                key={index}
+                className="bg-gradient-to-br from-purple-900/20 to-black border-purple-500/20 hover:border-purple-500/60 p-8 transition-all hover:scale-105"
               >
-                <Icon name={item.icon} size={18} />
-                <span>{item.label}</span>
-              </Button>
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl flex items-center justify-center mb-4">
+                  <Icon name={feature.icon} size={32} className="text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
+                <p className="text-gray-400">{feature.description}</p>
+              </Card>
             ))}
           </div>
-        </div>
-      </nav>
+        </section>
 
-      <main className="pt-32 pb-12 px-4">
-        <div className="container mx-auto max-w-6xl">
-          {activeSection === 'home' && (
-            <>
-              <section className="text-center mb-16 animate-slide-up">
-                <div className="inline-block mb-4">
-                  <Badge className="bg-gradient-to-r from-[#ff3366] to-[#9b87f5] text-white px-4 py-1 text-sm font-semibold game-glow-red">
-                    🎮 МОБИЛЬНЫЙ РП СЕРВЕР
-                  </Badge>
-                </div>
-                <h1 className="text-5xl md:text-7xl font-bold mb-6 text-game-gradient">
-                  НОUMI RUSSIA
-                </h1>
-                <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                  Погрузись в мир ролевой игры на мобильном устройстве. Создай свою историю, стройте карьеру и взаимодействуй с тысячами игроков!
-                </p>
-                
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-                  <Button className="bg-gradient-to-r from-[#00d4ff] to-[#0ea5e9] hover:from-[#00bfea] hover:to-[#0c8fc7] text-white px-8 py-6 text-lg font-semibold rounded-xl game-glow transition-all">
-                    <Icon name="Smartphone" size={24} className="mr-2" />
-                    Начать играть
-                  </Button>
-                  <Button variant="outline" className="border-2 border-[#9b87f5] text-[#9b87f5] hover:bg-[#9b87f5]/10 px-8 py-6 text-lg font-semibold rounded-xl transition-all">
-                    <Icon name="PlayCircle" size={24} className="mr-2" />
-                    Смотреть трейлер
-                  </Button>
-                </div>
+        {/* Servers Section */}
+        <section className="container mx-auto px-4 py-20">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+              ВЫБЕРИ СВОЙ <span className="text-purple-400">СЕРВЕР</span>
+            </h2>
+          </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                  <Card className="bg-gradient-to-br from-[#0a0e1a] to-[#1a1f2e] border-[#00d4ff]/30 p-6 hover:border-[#00d4ff] transition-all game-glow">
-                    <Icon name="Users" size={40} className="text-[#00d4ff] mb-4 mx-auto" />
-                    <h3 className="text-2xl font-bold text-white mb-2">0</h3>
-                    <p className="text-gray-400">Игроков онлайн</p>
-                  </Card>
-                  <Card className="bg-gradient-to-br from-[#0a0e1a] to-[#1a1f2e] border-[#9b87f5]/30 p-6 hover:border-[#9b87f5] transition-all game-glow-purple">
-                    <Icon name="MapPin" size={40} className="text-[#9b87f5] mb-4 mx-auto" />
-                    <h3 className="text-2xl font-bold text-white mb-2">100+</h3>
-                    <p className="text-gray-400">Локаций</p>
-                  </Card>
-                  <Card className="bg-gradient-to-br from-[#0a0e1a] to-[#1a1f2e] border-[#ff3366]/30 p-6 hover:border-[#ff3366] transition-all game-glow-red">
-                    <Icon name="Trophy" size={40} className="text-[#ff3366] mb-4 mx-auto" />
-                    <h3 className="text-2xl font-bold text-white mb-2">50+</h3>
-                    <p className="text-gray-400">Профессий</p>
-                  </Card>
-                </div>
-              </section>
-
-              <section className="mb-16">
-                <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-3xl md:text-4xl font-bold text-white flex items-center">
-                    <Icon name="Newspaper" size={32} className="text-[#00d4ff] mr-3" />
-                    Новости и обновления
-                  </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {servers.map((server, index) => (
+              <Card 
+                key={index}
+                className="bg-gradient-to-br from-purple-900/30 to-black border-purple-500/30 hover:border-purple-500 p-6 transition-all"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-2xl font-black text-white">{server.name}</h3>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                    <span className="text-green-400 text-sm font-semibold">ONLINE</span>
+                  </div>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {news.map((item, index) => (
-                    <Card
-                      key={item.id}
-                      className="bg-gradient-to-br from-[#0a0e1a] to-[#1a1f2e] border-[#00d4ff]/20 hover:border-[#00d4ff] transition-all overflow-hidden group cursor-pointer"
-                      style={{ animationDelay: `${index * 100}ms` }}
-                    >
-                      <div className="p-6">
-                        <div className="flex items-center justify-between mb-4">
-                          <Badge className="bg-[#00d4ff]/20 text-[#00d4ff] border border-[#00d4ff]/30">
-                            {item.category}
-                          </Badge>
-                          <Icon name={item.icon} size={24} className="text-[#9b87f5]" />
-                        </div>
-                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#00d4ff] transition-colors">
-                          {item.title}
-                        </h3>
-                        <p className="text-gray-400 text-sm mb-4">{item.description}</p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs text-gray-500">{item.date}</span>
-                          <Icon name="ArrowRight" size={18} className="text-[#00d4ff] opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
-                      </div>
-                    </Card>
-                  ))}
+                <div className="space-y-3 mb-6">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-400">Онлайн:</span>
+                    <span className="text-white font-bold">{server.online}/{server.max}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-400">Пинг:</span>
+                    <span className="text-green-400 font-bold">{server.ping}</span>
+                  </div>
+                  <div className="w-full bg-gray-800 rounded-full h-2">
+                    <div 
+                      className="bg-gradient-to-r from-purple-600 to-pink-600 h-2 rounded-full"
+                      style={{ width: `${(parseInt(server.online) / parseInt(server.max)) * 100}%` }}
+                    />
+                  </div>
                 </div>
-              </section>
 
-              <section className="text-center bg-gradient-to-r from-[#00d4ff]/10 via-[#9b87f5]/10 to-[#ff3366]/10 rounded-2xl p-8 border border-[#00d4ff]/30">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  Готов начать свою историю?
-                </h2>
-                <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-                  Скачай игру на свой телефон и присоединяйся к тысячам игроков прямо сейчас!
-                </p>
-                <Button className="bg-gradient-to-r from-[#00d4ff] to-[#9b87f5] hover:from-[#00bfea] hover:to-[#8a76e4] text-white px-8 py-6 text-lg font-semibold rounded-xl game-glow">
-                  <Icon name="Download" size={24} className="mr-2" />
-                  Скачать на телефон
-                </Button>
-              </section>
-            </>
-          )}
-
-          {activeSection === 'about' && (
-            <section className="animate-slide-up">
-              <h2 className="text-4xl font-bold text-white mb-8 flex items-center">
-                <Icon name="Info" size={36} className="text-[#00d4ff] mr-3" />
-                О сервере НОUMI RUSSIA
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card className="bg-gradient-to-br from-[#0a0e1a] to-[#1a1f2e] border-[#00d4ff]/30 p-6">
-                  <Icon name="Target" size={32} className="text-[#00d4ff] mb-4" />
-                  <h3 className="text-2xl font-bold text-white mb-3">Наша миссия</h3>
-                  <p className="text-gray-300">
-                    Создать уникальный мобильный РП опыт, где каждый игрок может реализовать себя, построить карьеру и стать частью активного сообщества.
-                  </p>
-                </Card>
-                <Card className="bg-gradient-to-br from-[#0a0e1a] to-[#1a1f2e] border-[#9b87f5]/30 p-6">
-                  <Icon name="Sparkles" size={32} className="text-[#9b87f5] mb-4" />
-                  <h3 className="text-2xl font-bold text-white mb-3">Особенности</h3>
-                  <ul className="text-gray-300 space-y-2">
-                    <li className="flex items-center"><Icon name="CheckCircle" size={18} className="text-[#00d4ff] mr-2" /> Игра на мобильном телефоне</li>
-                    <li className="flex items-center"><Icon name="CheckCircle" size={18} className="text-[#00d4ff] mr-2" /> Уникальная экономика</li>
-                    <li className="flex items-center"><Icon name="CheckCircle" size={18} className="text-[#00d4ff] mr-2" /> Честная администрация</li>
-                    <li className="flex items-center"><Icon name="CheckCircle" size={18} className="text-[#00d4ff] mr-2" /> Регулярные обновления</li>
-                  </ul>
-                </Card>
-              </div>
-            </section>
-          )}
-
-          {activeSection === 'forum' && (
-            <section className="animate-slide-up">
-              <h2 className="text-4xl font-bold text-white mb-8 flex items-center">
-                <Icon name="MessageSquare" size={36} className="text-[#00d4ff] mr-3" />
-                Форум
-              </h2>
-              <Card className="bg-gradient-to-br from-[#0a0e1a] to-[#1a1f2e] border-[#00d4ff]/30 p-8 text-center">
-                <Icon name="Users" size={64} className="text-[#00d4ff] mb-4 mx-auto" />
-                <h3 className="text-2xl font-bold text-white mb-4">Форум скоро откроется</h3>
-                <p className="text-gray-300 mb-6">
-                  Мы работаем над созданием площадки для общения игроков. Следите за новостями!
-                </p>
-                <Button className="bg-gradient-to-r from-[#00d4ff] to-[#9b87f5] text-white">
-                  <Icon name="Bell" size={20} className="mr-2" />
-                  Уведомить меня
+                <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700">
+                  <Icon name="Gamepad2" size={18} className="mr-2" />
+                  Играть на {server.name}
                 </Button>
               </Card>
-            </section>
-          )}
+            ))}
+          </div>
+        </section>
 
-          {activeSection === 'donate' && (
-            <section className="animate-slide-up">
-              <h2 className="text-4xl font-bold text-white mb-8 flex items-center">
-                <Icon name="ShoppingCart" size={36} className="text-[#00d4ff] mr-3" />
-                Донат
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {[
-                  { name: 'Стартовый', price: '299₽', features: ['Игровая валюта', 'Уникальный транспорт', 'VIP статус 7 дней'], color: 'blue' },
-                  { name: 'Премиум', price: '599₽', features: ['Игровая валюта x2', 'Эксклюзивный транспорт', 'VIP статус 30 дней', 'Уникальная одежда'], color: 'purple' },
-                  { name: 'Легенда', price: '999₽', features: ['Игровая валюта x5', 'Топовый транспорт', 'VIP статус навсегда', 'Эксклюзивная одежда', 'Приватный дом'], color: 'red' }
-                ].map((pack, index) => (
-                  <Card
-                    key={index}
-                    className={`bg-gradient-to-br from-[#0a0e1a] to-[#1a1f2e] border-[#${pack.color === 'blue' ? '00d4ff' : pack.color === 'purple' ? '9b87f5' : 'ff3366'}]/30 p-6 hover:scale-105 transition-transform`}
-                  >
-                    <h3 className="text-2xl font-bold text-white mb-2">{pack.name}</h3>
-                    <div className="text-4xl font-bold text-game-gradient mb-6">{pack.price}</div>
-                    <ul className="space-y-3 mb-6">
-                      {pack.features.map((feature, i) => (
-                        <li key={i} className="flex items-center text-gray-300">
-                          <Icon name="CheckCircle" size={18} className="text-[#00d4ff] mr-2" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    <Button className="w-full bg-gradient-to-r from-[#00d4ff] to-[#9b87f5] hover:from-[#00bfea] hover:to-[#8a76e4] text-white">
-                      Купить
-                    </Button>
-                  </Card>
-                ))}
-              </div>
-            </section>
-          )}
-        </div>
+        {/* CTA Section */}
+        <section className="container mx-auto px-4 py-20">
+          <Card className="bg-gradient-to-r from-purple-900/40 via-pink-900/40 to-red-900/40 border-purple-500/30 p-12 text-center">
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+              ГОТОВ НАЧАТЬ СВОЮ ИСТОРИЮ?
+            </h2>
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Скачай Black Russia прямо сейчас и начни путь от новичка до легенды криминального мира
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button size="lg" className="bg-white text-purple-900 hover:bg-gray-100 px-10 py-7 text-lg font-bold">
+                <Icon name="Download" size={24} className="mr-2" />
+                Скачать для Android
+              </Button>
+              <Button size="lg" className="bg-white text-purple-900 hover:bg-gray-100 px-10 py-7 text-lg font-bold">
+                <Icon name="Download" size={24} className="mr-2" />
+                Скачать для iOS
+              </Button>
+            </div>
+          </Card>
+        </section>
       </main>
 
-      <footer className="bg-[#0a0e1a] border-t border-[#00d4ff]/20 py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-400">© 2024 НОUMI RUSSIA. Все права защищены.</p>
-          <div className="flex items-center justify-center space-x-6 mt-4">
-            <a href="#" className="text-gray-400 hover:text-[#00d4ff] transition-colors">
-              <Icon name="MessageCircle" size={24} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-[#00d4ff] transition-colors">
-              <Icon name="Share2" size={24} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-[#00d4ff] transition-colors">
-              <Icon name="Mail" size={24} />
-            </a>
+      {/* Footer */}
+      <footer className="relative z-10 bg-black border-t border-purple-500/20 py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <h3 className="text-white font-bold mb-4">О проекте</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#" className="hover:text-white transition">О Black Russia</a></li>
+                <li><a href="#" className="hover:text-white transition">Правила</a></li>
+                <li><a href="#" className="hover:text-white transition">Команда</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white font-bold mb-4">Игрокам</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#" className="hover:text-white transition">Форум</a></li>
+                <li><a href="#" className="hover:text-white transition">Wiki</a></li>
+                <li><a href="#" className="hover:text-white transition">FAQ</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white font-bold mb-4">Донат</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#" className="hover:text-white transition">Магазин</a></li>
+                <li><a href="#" className="hover:text-white transition">Акции</a></li>
+                <li><a href="#" className="hover:text-white transition">Промокоды</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white font-bold mb-4">Поддержка</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#" className="hover:text-white transition">Помощь</a></li>
+                <li><a href="#" className="hover:text-white transition">Контакты</a></li>
+                <li><a href="#" className="hover:text-white transition">Репорты</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-purple-500/20 pt-8 flex flex-col md:flex-row items-center justify-between">
+            <p className="text-gray-400 text-sm mb-4 md:mb-0">
+              © 2024 Black Russia. Все права защищены.
+            </p>
+            <div className="flex items-center space-x-4">
+              <a href="#" className="text-gray-400 hover:text-white transition">
+                <Icon name="MessageCircle" size={20} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition">
+                <Icon name="Youtube" size={20} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition">
+                <Icon name="Instagram" size={20} />
+              </a>
+            </div>
           </div>
         </div>
       </footer>
-      </div>
     </div>
   );
 };

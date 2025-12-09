@@ -7,6 +7,23 @@ import Icon from '@/components/ui/icon';
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showTrailer, setShowTrailer] = useState(false);
+  const [currentScreenshot, setCurrentScreenshot] = useState(0);
+
+  const screenshots = [
+    'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=1200&q=80',
+    'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1200&q=80',
+    'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=1200&q=80',
+    'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&q=80'
+  ];
+
+  const nextScreenshot = () => {
+    setCurrentScreenshot((prev) => (prev + 1) % screenshots.length);
+  };
+
+  const prevScreenshot = () => {
+    setCurrentScreenshot((prev) => (prev - 1 + screenshots.length) % screenshots.length);
+  };
 
   const features = [
     {
@@ -143,7 +160,12 @@ const Index = () => {
               <Icon name="Download" size={24} className="mr-2" />
               Скачать игру
             </Button>
-            <Button size="lg" variant="outline" className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500/10 px-10 py-7 text-lg">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500/10 px-10 py-7 text-lg"
+              onClick={() => setShowTrailer(true)}
+            >
               <Icon name="PlayCircle" size={24} className="mr-2" />
               Смотреть трейлер
             </Button>
@@ -167,6 +189,55 @@ const Index = () => {
               <div className="text-4xl font-black text-blue-400 mb-2">15</div>
               <div className="text-gray-400 text-sm">Фракций</div>
             </Card>
+          </div>
+        </section>
+
+        {/* Screenshots Gallery */}
+        <section className="container mx-auto px-4 py-20">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+              СКРИНШОТЫ <span className="text-purple-400">ИГРЫ</span>
+            </h2>
+            <p className="text-gray-400 text-lg">Погрузись в атмосферу Black Russia</p>
+          </div>
+
+          <div className="relative max-w-5xl mx-auto">
+            <div className="relative aspect-video rounded-2xl overflow-hidden border-2 border-purple-500/30">
+              <img 
+                src={screenshots[currentScreenshot]}
+                alt={`Screenshot ${currentScreenshot + 1}`}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            </div>
+
+            <button 
+              onClick={prevScreenshot}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/60 hover:bg-purple-600 rounded-full flex items-center justify-center transition-all backdrop-blur-sm border border-purple-500/30"
+            >
+              <Icon name="ChevronLeft" size={24} className="text-white" />
+            </button>
+
+            <button 
+              onClick={nextScreenshot}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/60 hover:bg-purple-600 rounded-full flex items-center justify-center transition-all backdrop-blur-sm border border-purple-500/30"
+            >
+              <Icon name="ChevronRight" size={24} className="text-white" />
+            </button>
+
+            <div className="flex justify-center mt-6 space-x-2">
+              {screenshots.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentScreenshot(index)}
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    currentScreenshot === index 
+                      ? 'bg-purple-500 w-8' 
+                      : 'bg-gray-600 hover:bg-purple-400'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </section>
 
@@ -322,6 +393,37 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      {/* Video Trailer Modal */}
+      {showTrailer && (
+        <div 
+          className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setShowTrailer(false)}
+        >
+          <div 
+            className="relative w-full max-w-5xl aspect-video"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowTrailer(false)}
+              className="absolute -top-12 right-0 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all"
+            >
+              <Icon name="X" size={24} className="text-white" />
+            </button>
+            <div className="w-full h-full bg-gradient-to-br from-purple-900/40 to-black border-2 border-purple-500/50 rounded-2xl overflow-hidden">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+                title="Black Russia Trailer"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
